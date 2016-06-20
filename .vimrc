@@ -28,7 +28,13 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'elzr/vim-json'
 Plugin 'skalnik/vim-vroom'
 Plugin 'notpratheek/vim-luna'
-Plugin 'tomsik68/vim-crystallite'
+Plugin 'hewo/vim-colorscheme-deepsea'
+Plugin 'godlygeek/csapprox'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'felixhummel/setcolors.vim'
+Plugin 'jonathanfilip/vim-lucius'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'bounceme/base.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -43,8 +49,13 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-colorscheme luna-term 
-
+" colorscheme lucius
+"LuciusDarkHighContrast
+"colorscheme deepsea
+set t_Co=256
+syntax enable
+set background=dark
+colorscheme deepsea
 let mapleader = " "
 
 
@@ -99,11 +110,22 @@ set complete+=kspell
 " Always use vertical diffs
 set diffopt+=vertical
 
-" Quicker window movement
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-l> <C-w>l
+" Quicker split movement
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr> 
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious
+
+"auto-save on leave
+let g:tmux_navigator_save_on_switch = 1
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd \|<cr>
+
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :windcmd =<cr>
 
 " Quicker window re-organizing
 " nnoremap <C-J> <C-w>J
@@ -125,4 +147,8 @@ nmap k gk
 
 " vim-rspec plugin save all and run current spec
  map <Leader>t :wall<cr>:call RunCurrentSpecFile()<CR>
-
+" Fixing colorscheme stuff?
+" IMPORTANT: Uncomment one of the following lines to force
+" using 256 colors (or 88 colors) if your terminal supports it,
+" but does not automatically use 256 colors by default.
+"set t_Co=88
