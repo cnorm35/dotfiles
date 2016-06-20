@@ -28,13 +28,15 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'elzr/vim-json'
 Plugin 'skalnik/vim-vroom'
 Plugin 'notpratheek/vim-luna'
-Plugin 'hewo/vim-colorscheme-deepsea'
+Plugin 'cnorm35/vim-colorscheme-deepsea'
 Plugin 'godlygeek/csapprox'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'felixhummel/setcolors.vim'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'bounceme/base.vim'
+Plugin 'vim-scripts/Toggle-NERDTree-width'
+Plugin 'mileszs/ack.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -54,15 +56,16 @@ filetype plugin indent on    " required
 "colorscheme deepsea
 set t_Co=256
 syntax enable
-set background=dark
+" set background=dark
 colorscheme deepsea
 let mapleader = " "
-
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  " set grepprg=ag\ --nogroup\ --nocolor
+
+  let g:ackprg = 'ag --nogroup --nocolor --column'
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
@@ -71,7 +74,13 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+nnoremap \ :Ag<SPACE>
 
 set number
 set nobackup
@@ -111,11 +120,11 @@ set complete+=kspell
 set diffopt+=vertical
 
 " Quicker split movement
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr> 
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-\> :TmuxNavigatePrevious
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 "auto-save on leave
 let g:tmux_navigator_save_on_switch = 1
