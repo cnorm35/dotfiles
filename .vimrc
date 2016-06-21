@@ -129,8 +129,8 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 let g:tmux_navigator_save_on_switch = 1
 
 " automatically rebalance windows on vim resize
-autocmd VimResized * :wincmd \|<cr>
-autocmd VimResized * :wincmd =
+"autocmd VimResized * :wincmd \|
+"autocmd VimResized * :wincmd =
 
 " automatically rebalance windows on vim resize
 
@@ -139,7 +139,7 @@ autocmd VimResized * :wincmd =
 "nnoremap <leader>= :windcmd =<cr>
 
 " open tmux pane to right with 25% of the screen or irb
-nnoremap <leader>irb :VtrOpenRunner {'orientation': 'h', 'percentage': 25, 'cmd': 'irb'}<cr>
+nnoremap <leader>irb :VtrOpenRunner {'orientation': 'h', 'percentage': 50, 'cmd': 'irb'}<cr>
 " Quicker window re-organizing
 " nnoremap <C-J> <C-w>J
 " nnoremap <C-K> <C-w>K
@@ -176,3 +176,5 @@ nmap k gk
 " using 256 colors (or 88 colors) if your terminal supports it,
 " but does not automatically use 256 colors by default.
 "set t_Co=88
+"Use leader left to go to last buffer
+nmap <leader><Left> <C-^> 
