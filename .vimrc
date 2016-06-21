@@ -26,7 +26,6 @@ Plugin 'ervandew/supertab'
 Plugin 'scrooloose/syntastic'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'elzr/vim-json'
-Plugin 'skalnik/vim-vroom'
 Plugin 'notpratheek/vim-luna'
 Plugin 'cnorm35/vim-colorscheme-deepsea'
 Plugin 'godlygeek/csapprox'
@@ -74,13 +73,13 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" " bind \ (backward slash) to grep shortcut
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
-nnoremap \ :Ag<SPACE>
+nnoremap <leader>\ :Ag<SPACE>
 
 set number
 set nobackup
@@ -130,17 +129,35 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 let g:tmux_navigator_save_on_switch = 1
 
 " automatically rebalance windows on vim resize
+<<<<<<< HEAD
 "autocmd VimResized * :wincmd \|<cr>
+=======
+autocmd VimResized * :wincmd =
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd \|<cr>
+>>>>>>> 197c9df644b3f0eb278fb940670a9f41065e3aca
 
 " zoom a vim pane, <C-w>= to re-balance
 "nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 "nnoremap <leader>= :windcmd =<cr>
 
+" open tmux pane to right with 25% of the screen or irb
+nnoremap <leader>irb :VtrOpenRunner {'orientation': 'h', 'percentage': 25, 'cmd': 'irb'}<cr>
 " Quicker window re-organizing
 " nnoremap <C-J> <C-w>J
 " nnoremap <C-K> <C-w>K
 " nnoremap <C-H> <C-w>H
 " nnoremap <C-L> <C-w>L
+
+" let vim-rspec hand tmux spec to run
+let g:rspec_command = "call VtrSendCommand('rspec {spec}')"
+
+"Mappings for running spec
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 " Easy assces to the start of text on a line
 nmap 0 ^
@@ -150,6 +167,8 @@ nmap <leader>vi :vsp $MYVIMRC<cr>
 " Reload changes
 nmap <leader>so :source $MYVIMRC<cr>
 
+"Focus on runner pane
+nmap <leader>fr :VtrFocusRunner<cr>
 " Move up and down by visible lines if current line is wrapped
 nmap j gj
 nmap k gk
