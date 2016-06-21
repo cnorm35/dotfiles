@@ -130,11 +130,11 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 let g:tmux_navigator_save_on_switch = 1
 
 " automatically rebalance windows on vim resize
-autocmd VimResized * :wincmd \|<cr>
+"autocmd VimResized * :wincmd \|<cr>
 
 " zoom a vim pane, <C-w>= to re-balance
-nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-nnoremap <leader>= :windcmd =<cr>
+"nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+"nnoremap <leader>= :windcmd =<cr>
 
 " Quicker window re-organizing
 " nnoremap <C-J> <C-w>J
@@ -155,7 +155,7 @@ nmap j gj
 nmap k gk
 
 " vim-rspec plugin save all and run current spec
- map <Leader>t :wall<cr>:call RunCurrentSpecFile()<CR>
+ map <Leader>t :wall<cr>:call RunCurrentSpecFile()<cr>
 " Fixing colorscheme stuff?
 " IMPORTANT: Uncomment one of the following lines to force
 " using 256 colors (or 88 colors) if your terminal supports it,
