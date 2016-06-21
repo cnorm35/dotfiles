@@ -129,14 +129,10 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 let g:tmux_navigator_save_on_switch = 1
 
 " automatically rebalance windows on vim resize
-<<<<<<< HEAD
-"autocmd VimResized * :wincmd \|<cr>
-=======
+autocmd VimResized * :wincmd \|<cr>
 autocmd VimResized * :wincmd =
 
 " automatically rebalance windows on vim resize
-autocmd VimResized * :wincmd \|<cr>
->>>>>>> 197c9df644b3f0eb278fb940670a9f41065e3aca
 
 " zoom a vim pane, <C-w>= to re-balance
 "nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
