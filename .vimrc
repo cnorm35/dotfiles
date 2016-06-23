@@ -29,11 +29,7 @@ Plugin 'elzr/vim-json'
 Plugin 'notpratheek/vim-luna'
 Plugin 'cnorm35/vim-colorscheme-deepsea'
 Plugin 'godlygeek/csapprox'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'felixhummel/setcolors.vim'
-Plugin 'jonathanfilip/vim-lucius'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'bounceme/base.vim'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
 Plugin 'mileszs/ack.vim'
 " All of your Plugins must be added before the following line
@@ -50,12 +46,8 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-" colorscheme lucius
-"LuciusDarkHighContrast
-"colorscheme deepsea
 set t_Co=256
 syntax enable
-" set background=dark
 colorscheme deepsea
 let mapleader = " "
 
@@ -81,6 +73,7 @@ command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 nnoremap <leader>\ :Ag<SPACE>
 
+" syntax and formatting
 set number
 set nobackup
 set nowritebackup
@@ -119,6 +112,7 @@ set complete+=kspell
 set diffopt+=vertical
 
 " Quicker split movement
+" https://github.com/christoomey/vim-tmux-navigator
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
@@ -178,3 +172,9 @@ nmap k gk
 "set t_Co=88
 "Use leader left to go to last buffer
 nmap <leader><Left> <C-^> 
+
+" This could break everything
+" Set ctrl-p to have no max on files is searches
+" look into setting up c-tags to see if it speeds it up
+" let g:ctrlp_dotfiles = 0
+let g:ctrlp_max_files = 0
