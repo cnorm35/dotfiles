@@ -32,6 +32,7 @@ Plugin 'godlygeek/csapprox'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
 Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -89,7 +90,8 @@ set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
-
+"auto-complete vim-commands
+set wildmenu
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 " Make it obvious where 80 characters is
@@ -118,6 +120,12 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+"Quicker resize of splits
+nnoremap <silent> <S-l> :vertical resize -2<cr>
+nnoremap <silent> <S-k> :resize +2<cr>
+nnoremap <silent> <S-j> :resize -2<cr>
+nnoremap <silent> <S-h> :vertical resize +2<cr>
 
 "auto-save on leave
 let g:tmux_navigator_save_on_switch = 1
