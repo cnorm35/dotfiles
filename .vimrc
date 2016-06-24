@@ -19,6 +19,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-dispatch'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -31,7 +32,6 @@ Plugin 'cnorm35/vim-colorscheme-deepsea'
 Plugin 'godlygeek/csapprox'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
-Plugin 'mileszs/ack.vim'
 Plugin 'rking/ag.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -122,10 +122,10 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 "Quicker resize of splits
-nnoremap <silent> <S-l> :vertical resize -2<cr>
-nnoremap <silent> <S-k> :resize +2<cr>
-nnoremap <silent> <S-j> :resize -2<cr>
-nnoremap <silent> <S-h> :vertical resize +2<cr>
+nnoremap <silent> <C-w>l :vertical resize -2<cr>
+nnoremap <silent> <C-w>k :resize +2<cr>
+nnoremap <silent> <C-w>j :resize -2<cr>
+nnoremap <silent> <C-w>h :vertical resize +2<cr>
 
 "auto-save on leave
 let g:tmux_navigator_save_on_switch = 1
@@ -148,9 +148,8 @@ nnoremap <leader>irb :VtrOpenRunner {'orientation': 'h', 'percentage': 50, 'cmd'
 " nnoremap <C-H> <C-w>H
 " nnoremap <C-L> <C-w>L
 
-" let vim-rspec hand tmux spec to run
-let g:rspec_command = "call VtrSendCommand('rspec {spec}')"
-
+"needed to run 'bundle binstubs rspec-core' to get this working
+let g:rspec_command = "Dispatch  bin/rspec {spec}"
 "Mappings for running spec
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
@@ -165,24 +164,16 @@ nmap <leader>vi :vsp $MYVIMRC<cr>
 " Reload changes
 nmap <leader>so :source $MYVIMRC<cr>
 
-"Focus on runner pane
-nmap <leader>fr :VtrFocusRunner<cr>
-" Move up and down by visible lines if current line is wrapped
 nmap j gj
 nmap k gk
 
-" vim-rspec plugin save all and run current spec
- map <Leader>t :wall<cr>:call RunCurrentSpecFile()<cr>
-" Fixing colorscheme stuff?
-" IMPORTANT: Uncomment one of the following lines to force
-" using 256 colors (or 88 colors) if your terminal supports it,
-" but does not automatically use 256 colors by default.
-"set t_Co=88
 "Use leader left to go to last buffer
 nmap <leader><Left> <C-^> 
 
 " This could break everything
 " Set ctrl-p to have no max on files is searches
 " look into setting up c-tags to see if it speeds it up
-" let g:ctrlp_dotfiles = 0
+let g:ctrlp_dotfiles = 0
 let g:ctrlp_max_files = 0
+let g:ctrlp_switch_buffer = 0 " open files in a new buffer
+let g:ctrl_p_working_path = 0 " change the working directoryduring a vim session
