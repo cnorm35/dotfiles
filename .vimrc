@@ -33,6 +33,7 @@ Plugin 'godlygeek/csapprox'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
 Plugin 'rking/ag.vim'
+Plugin 'simeji/winresizer'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -122,12 +123,12 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 "Quicker resize of splits
-nnoremap <silent> <C-w>l :vertical resize -2<cr>
-nnoremap <silent> <C-w>k :resize +2<cr>
-nnoremap <silent> <C-w>j :resize -2<cr>
-nnoremap <silent> <C-w>h :vertical resize +2<cr>
+"nnoremap <silent> <C-w>l :vertical resize -2<cr>
+"nnoremap <silent> <C-w>k :resize +2<cr>
+"nnoremap <silent> <C-w>j :resize -2<cr>
+"nnoremap <silent> <C-w>h :vertical resize +2<cr>
 
-"auto-save on leave
+
 let g:tmux_navigator_save_on_switch = 1
 
 " automatically rebalance windows on vim resize
@@ -173,7 +174,9 @@ nmap <leader><Left> <C-^>
 " This could break everything
 " Set ctrl-p to have no max on files is searches
 " look into setting up c-tags to see if it speeds it up
-let g:ctrlp_dotfiles = 0
 let g:ctrlp_max_files = 0
 let g:ctrlp_switch_buffer = 0 " open files in a new buffer
-let g:ctrl_p_working_path = 0 " change the working directoryduring a vim session
+let g:ctrlp_working_path = 0 " change the working directoryduring a vim session
+let g:ctrlp_by_filename = 1 "search by filename instead of full path
+let g:ctrlp_dotfiles = 0
+let g:ctrlp_show_hidden = 0
