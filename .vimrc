@@ -152,7 +152,6 @@ nnoremap <leader>irb :VtrOpenRunner {'orientation': 'h', 'percentage': 50, 'cmd'
 " let vim-rspec hand tmux spec to run
 "needed to run 'bundle binstubs rspec-core' to get this working
 let g:rspec_command = "Dispatch  bin/rspec {spec}"
->>>>>>> d0c1d640bd35f7df14f38c2c5dc80d5640a5d6b2
 "Mappings for running spec
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
