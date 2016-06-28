@@ -19,6 +19,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-dispatch'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -29,13 +30,10 @@ Plugin 'elzr/vim-json'
 Plugin 'notpratheek/vim-luna'
 Plugin 'cnorm35/vim-colorscheme-deepsea'
 Plugin 'godlygeek/csapprox'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'felixhummel/setcolors.vim'
-Plugin 'jonathanfilip/vim-lucius'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'bounceme/base.vim'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
-Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
+Plugin 'simeji/winresizer'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -147,14 +145,14 @@ nnoremap <leader>irb :VtrOpenRunner {'orientation': 'h', 'percentage': 50, 'cmd'
 " nnoremap <C-L> <C-w>L
 
 " let vim-rspec hand tmux spec to run
-let g:rspec_command = "call VtrSendCommand('rspec {spec}')"
-
 "Mappings for running spec
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
+" may need to run bundle binstubs rspec-core
+let g:rspec_command = "Dispatch bundle exec rspec {spec}"
 " Easy assces to the start of text on a line
 nmap 0 ^
 
@@ -162,9 +160,7 @@ nmap 0 ^
 nmap <leader>vi :vsp $MYVIMRC<cr>
 " Reload changes
 nmap <leader>so :source $MYVIMRC<cr>
-
-"Focus on runner pane
-nmap <leader>fr :VtrFocusRunner<cr>
+nmap <leader>no :sp ~/Google\ Drive/NotesFromVim/notes.md<cr>
 " Move up and down by visible lines if current line is wrapped
 nmap j gj
 nmap k gk
@@ -178,3 +174,13 @@ nmap k gk
 "set t_Co=88
 "Use leader left to go to last buffer
 nmap <leader><Left> <C-^> 
+
+" This could break everything
+" " Set ctrl-p to have no max on files is searches
+" " look into setting up c-tags to see if it speeds it up
+let g:ctrlp_max_files = 0
+let g:ctrlp_switch_buffer = 0 " open files in a new buffer
+let g:ctrlp_working_path = 0 " change the working directoryduring a vim session
+let g:ctrlp_by_filename = 1 "search by filename instead of full path
+let g:ctrlp_dotfiles = 0
+let g:ctrlp_show_hidden = 0
