@@ -48,12 +48,8 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-" colorscheme lucius
-"LuciusDarkHighContrast
-"colorscheme deepsea
 set t_Co=256
 syntax enable
-" set background=dark
 colorscheme deepsea
 let mapleader = " "
 
@@ -79,6 +75,7 @@ command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 nnoremap <leader>\ :Ag<SPACE>
 
+" syntax and formatting
 set number
 set nobackup
 set nowritebackup
@@ -94,7 +91,8 @@ set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
-
+"auto-complete vim-commands
+set wildmenu
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 " Make it obvious where 80 characters is
@@ -117,13 +115,20 @@ set complete+=kspell
 set diffopt+=vertical
 
 " Quicker split movement
+" https://github.com/christoomey/vim-tmux-navigator
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
-"auto-save on leave
+"Quicker resize of splits
+"nnoremap <silent> <C-w>l :vertical resize -2<cr>
+"nnoremap <silent> <C-w>k :resize +2<cr>
+"nnoremap <silent> <C-w>j :resize -2<cr>
+"nnoremap <silent> <C-w>h :vertical resize +2<cr>
+
+
 let g:tmux_navigator_save_on_switch = 1
 
 " automatically rebalance windows on vim resize
@@ -145,6 +150,9 @@ nnoremap <leader>irb :VtrOpenRunner {'orientation': 'h', 'percentage': 50, 'cmd'
 " nnoremap <C-L> <C-w>L
 
 " let vim-rspec hand tmux spec to run
+"needed to run 'bundle binstubs rspec-core' to get this working
+let g:rspec_command = "Dispatch  bin/rspec {spec}"
+>>>>>>> d0c1d640bd35f7df14f38c2c5dc80d5640a5d6b2
 "Mappings for running spec
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
@@ -162,22 +170,18 @@ nmap <leader>vi :vsp $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 nmap <leader>no :sp ~/Google\ Drive/NotesFromVim/notes.md<cr>
 " Move up and down by visible lines if current line is wrapped
+
 nmap j gj
 nmap k gk
 
-" vim-rspec plugin save all and run current spec
- map <Leader>t :wall<cr>:call RunCurrentSpecFile()<cr>
-" Fixing colorscheme stuff?
-" IMPORTANT: Uncomment one of the following lines to force
-" using 256 colors (or 88 colors) if your terminal supports it,
-" but does not automatically use 256 colors by default.
-"set t_Co=88
 "Use leader left to go to last buffer
 nmap <leader><Left> <C-^> 
 
 " This could break everything
 " " Set ctrl-p to have no max on files is searches
 " " look into setting up c-tags to see if it speeds it up
+" Set ctrl-p to have no max on files is searches
+" look into setting up c-tags to see if it speeds it up
 let g:ctrlp_max_files = 0
 let g:ctrlp_switch_buffer = 0 " open files in a new buffer
 let g:ctrlp_working_path = 0 " change the working directoryduring a vim session
