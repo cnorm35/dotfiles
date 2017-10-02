@@ -33,7 +33,11 @@ Plugin 'godlygeek/csapprox'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
 Plugin 'rking/ag.vim'
-Plugin 'simeji/winresizer'
+Plugin 'tpope/vim-commentary'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'joukevandermaas/vim-ember-hbs'
+Plugin 'derekwyatt/vim-scala'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -167,7 +171,8 @@ nmap 0 ^
 nmap <leader>vi :vsp $MYVIMRC<cr>
 " Reload changes
 nmap <leader>so :source $MYVIMRC<cr>
-nmap <leader>no :sp ~/Google\ Drive/NotesFromVim/notes.md<cr>
+" nmap <leader>no :sp ~/Google\ Drive/NotesFromVim/notes.md<cr>
+nmap <leader>notes :sp ../notes.md
 " Move up and down by visible lines if current line is wrapped
 
 nmap j gj
@@ -187,3 +192,9 @@ let g:ctrlp_working_path = 0 " change the working directoryduring a vim session
 let g:ctrlp_by_filename = 1 "search by filename instead of full path
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_show_hidden = 0
+
+" remap escape key
+:imap jj <Esc>
+" nmap :W<CR> :w<CR>
+" imap <leader>w :w<cr>
+" imap <leader>wq :wq<cr>

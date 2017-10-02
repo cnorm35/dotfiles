@@ -50,7 +50,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(git vi-mode osx)
 
 # User configuration
 
@@ -86,4 +86,33 @@ source $ZSH/oh-my-zsh.sh
 eval "$(rbenv init - zsh)"
 alias be="bundle exec"
 # export path for Elixir
-#
+alias work_login="ssh -A codyn@dev-web.subtext.org"
+alias sp="spotify"
+alias it="itunes"
+alias ember_proxy_to_stage="CONSUMER_APP_URI=http://stage-consumer.subtext.org ember s --proxy=https://stage-consumer.subtext.org"
+export PATH="$HOME/.exenv/bin:$PATH"
+eval "$(exenv init -)"
+export PATH=/usr/local/bin:$PATH
+#Hack to try to get postgres working again
+export PGHOST=localhost
+
+function set_up_rails_db {
+  be rake db:reset && psql admin_dev_codyn < ../latest.sql
+}
+
+function ember_rails_proxy {
+  ember serve --proxy http://localhost:3000
+}
+
+function pull_remote_dump {
+  scp codyn@dev-web.subtext.org:/home/codyn/prod-db-copies/latest.sql ~/Code/SubText/latest.sql
+  
+}
+
+function fresh_prod_db {
+  pull_remote_dump && set_up_rails_db
+}
+
+function get_weather {
+  curl wttr.in
+}
